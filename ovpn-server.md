@@ -94,3 +94,34 @@
 ![](./ovpn-server/add-nat-2.jpg)
 ![](./ovpn-server/add-nat-3.jpg)
 
+#### 10. 下載 ca.crt, client.crt, client.key
+
+![](./ovpn-server/download-files.jpg)
+
+#### 11 新增文字檔並儲存成 .ovpn 副檔名
+
+```
+【連線名稱】
+dev tun
+proto tcp
+remote 【外網IP】 1194
+keepalive 10 120
+auth SHA1
+auth-user-pass
+cipher AES-256-CBC
+verb 5
+redirect-gateway def1
+dhcp-option DNS 8.8.8.8
+
+<ca>
+【ca.crt 內容】
+</ca>
+
+<cert>
+【client.crt 內容】
+</cert>
+
+<key>
+【client.key 內容】
+</key>
+```

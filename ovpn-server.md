@@ -29,7 +29,7 @@
 #### 3. 製作 client.crt 並導出 client.crt, client.key
 
 ```
-/certificate add name=Client country=tw state=taiwan locality=taipei organization="pardn ltd" common-name=client key-usage=tls-client
+/certificate add name=client country=tw state=taiwan locality=taipei organization="pardn ltd" common-name=client key-usage=tls-client
 /certificate sign client name=client ca=CA
 /certificate export-certificate client file-name=client export-passphrase=【自訂密碼】
 ```

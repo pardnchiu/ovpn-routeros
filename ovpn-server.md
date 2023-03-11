@@ -98,7 +98,7 @@
 
 ![](./ovpn-server/download-files.jpg)
 
-#### 11 新增文字檔並儲存成 .ovpn 副檔名
+#### 11. 新增文字檔並儲存成 .ovpn 副檔名
 
 ```
 【連線名稱】
@@ -125,3 +125,7 @@ dhcp-option DNS 8.8.8.8
 【client.key 內容】
 </key>
 ```
+
+#### 12. 導入 .ovpn
+
+![](./ovpn-server/import-setting.jpg)

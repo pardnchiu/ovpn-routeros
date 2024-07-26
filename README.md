@@ -6,7 +6,7 @@
 
 ```
 /certificate add name=ca common-name=ca key-usage=key-cert-sign,crl-sign
-/certificate sign ca name=ca ca-crl-host=【外網IP】
+/certificate sign ca name=ca ca-crl-host=[外網IP]
 /certificate export-certificate ca file-name=ca
 ```
 
@@ -31,7 +31,7 @@
 ```
 /certificate add name=client country=tw state=taiwan locality=taipei organization="pardn ltd" common-name=client key-usage=tls-client
 /certificate sign client name=client ca=CA
-/certificate export-certificate client file-name=client export-passphrase=【自訂密碼】
+/certificate export-certificate client file-name=client export-passphrase=[自訂密碼]
 ```
 
 ![](./ovpn-server/certificate-client-1.jpg)
@@ -69,7 +69,7 @@
 #### 7. 建立 OVPN 密碼
 
 ```
-/ppp secret add name=【帳號】 password=【密碼】 service=ovpn profile=ovpn
+/ppp secret add name=[帳號] password=[密碼] service=ovpn profile=ovpn
 ```
 
 ![](./ovpn-server/add-secret-1.jpg)
@@ -86,10 +86,6 @@
 
 #### 9. 確認 Nat（若連上後無法上網）
 
-```
-
-```
-
 ![](./ovpn-server/add-nat-1.jpg)
 ![](./ovpn-server/add-nat-2.jpg)
 ![](./ovpn-server/add-nat-3.jpg)
@@ -101,28 +97,32 @@
 #### 11. 新增文字檔並儲存成 .ovpn 副檔名
 
 ```
-【連線名稱】
+[連線名稱]
 dev tun
-proto tcp
-remote 【外網IP】 1194
+proto tcp-client
+remote [外網IP] 1194
 keepalive 10 120
 auth SHA1
-auth-user-pass
 cipher AES-256-CBC
+data-ciphers AES-256-CBC
 verb 5
 redirect-gateway def1
 dhcp-option DNS 8.8.8.8
+auth-user-pass
+tls-client
+client
+remote-cert-tls server
 
 <ca>
-【ca.crt 內容】
+[ca.crt 內容]
 </ca>
 
 <cert>
-【client.crt 內容】
+[client.crt 內容]
 </cert>
 
 <key>
-【client.key 內容】
+[client.key 內容]
 </key>
 ```
 
